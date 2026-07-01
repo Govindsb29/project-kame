@@ -3,6 +3,7 @@ package io.projectkame.app;
 import io.projectkame.backup.BackupInspector;
 import io.projectkame.backup.BackupReader;
 import io.projectkame.backup.GzipBackupReader;
+import io.projectkame.backup.StringExtractor;
 import io.projectkame.util.HexUtils;
 
 import java.nio.file.Path;
@@ -46,6 +47,16 @@ public class Application {
             System.out.println(
                     HexUtils.firstBytes(protobufData, 32)
             );
+
+            StringExtractor extractor = new StringExtractor();
+
+            System.out.println();
+            System.out.println("First 20 extracted strings:");
+
+            extractor.extract(protobufData)
+                    .stream()
+                    .limit(20)
+                    .forEach(System.out::println);
 
         } catch (Exception e) {
 
