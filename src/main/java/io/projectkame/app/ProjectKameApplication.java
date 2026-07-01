@@ -1,20 +1,23 @@
 package io.projectkame.app;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 
-public class ProjectKameApplication extends javafx.application.Application {
+public class ProjectKameApplication extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
 
-        Label label = new Label("Welcome to Project Kame!");
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxml/MainView.fxml")
+        );
 
-        StackPane root = new StackPane(label);
+        Parent root = loader.load();
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 900, 650);
 
         stage.setTitle("Project Kame");
         stage.setScene(scene);
