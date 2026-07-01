@@ -6,6 +6,9 @@ import java.nio.file.Path;
 
 public class BackupExplorer {
 
+    private static final int HEX_PREVIEW_LENGTH = 32;
+    private static final int STRING_PREVIEW_LIMIT = 20;
+
     public void explore(Path backupFile) throws Exception {
 
         BackupReader reader = new BackupReader();
@@ -33,7 +36,7 @@ public class BackupExplorer {
         System.out.println("First 32 bytes:");
 
         System.out.println(
-                HexUtils.firstBytes(protobufData, 32)
+                HexUtils.firstBytes(protobufData, HEX_PREVIEW_LENGTH)
         );
 
         StringExtractor extractor = new StringExtractor();
@@ -43,7 +46,7 @@ public class BackupExplorer {
 
         extractor.extract(protobufData)
                 .stream()
-                .limit(20)
+                .limit(STRING_PREVIEW_LIMIT)
                 .forEach(System.out::println);
     }
 }
