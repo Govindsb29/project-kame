@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="io.projectkame.view.MainController">
 
     <top>
-        <HBox spacing="10"
-              style="-fx-background-color:#2b2b2b;">
-
+        <HBox style="-fx-background-color:#2b2b2b;">
             <padding>
                 <Insets top="10" right="15" bottom="10" left="15"/>
             </padding>
 
             <children>
-
                 <Label text="Project Kame"
                        style="-fx-text-fill:white;
-                              -fx-font-size:20px;
+                              -fx-font-size:22px;
                               -fx-font-weight:bold;"/>
-
             </children>
 
         </HBox>
@@ -36,7 +27,7 @@
     <left>
 
         <VBox spacing="15"
-              prefWidth="230">
+              prefWidth="220">
 
             <padding>
                 <Insets top="20" right="15" bottom="20" left="15"/>
@@ -44,13 +35,16 @@
 
             <children>
 
-                <Label text="Actions"
-                       style="-fx-font-size:16px;
-                              -fx-font-weight:bold;"/>
-
                 <Button fx:id="openBackupButton"
                         text="Open Mihon Backup"
-                        prefWidth="200"/>
+                        prefWidth="180"/>
+
+                <Separator/>
+
+                <Label text="Status"/>
+
+                <Label fx:id="statusLabel"
+                       text="No backup loaded."/>
 
             </children>
 
@@ -60,26 +54,55 @@
 
     <center>
 
-        <VBox spacing="10">
+        <SplitPane dividerPositions="0.35">
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            <items>
 
-            <children>
+                <VBox spacing="10">
 
-                <Label text="Backup Preview"
-                       style="-fx-font-size:18px;
-                              -fx-font-weight:bold;"/>
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
 
-                <TextArea fx:id="statusArea"
-                          editable="false"
-                          wrapText="true"
-                          VBox.vgrow="ALWAYS"/>
+                    <children>
 
-            </children>
+                        <Label text="Library"
+                               style="-fx-font-size:18px;
+                                      -fx-font-weight:bold;"/>
 
-        </VBox>
+                        <TextField fx:id="searchField"
+                                   promptText="Search..."/>
+
+                        <ListView fx:id="libraryList"/>
+
+                    </children>
+
+                </VBox>
+
+                <VBox spacing="10">
+
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+
+                    <children>
+
+                        <Label text="Details"
+                               style="-fx-font-size:18px;
+                                      -fx-font-weight:bold;"/>
+
+                        <TextArea fx:id="statusArea"
+                                  editable="false"
+                                  wrapText="true"
+                                  VBox.vgrow="ALWAYS"/>
+
+                    </children>
+
+                </VBox>
+
+            </items>
+
+        </SplitPane>
 
     </center>
 

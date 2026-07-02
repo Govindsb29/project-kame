@@ -1,7 +1,7 @@
 package io.projectkame.viewmodel;
 
-import io.projectkame.backup.BackupExplorer;
 import io.projectkame.backup.BackupReport;
+import io.projectkame.importer.MihonImporter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,7 +12,8 @@ public class MainViewModel {
     private final StringProperty status =
             new SimpleStringProperty("No backup loaded.");
 
-    private final BackupExplorer explorer = new BackupExplorer();
+    private final MihonImporter importer =
+            new MihonImporter();
 
     public StringProperty statusProperty() {
         return status;
@@ -22,7 +23,8 @@ public class MainViewModel {
 
         try {
 
-            BackupReport report = explorer.explore(path);
+            BackupReport report =
+                    importer.importBackup(path);
 
             StringBuilder sb = new StringBuilder();
 
@@ -42,13 +44,10 @@ public class MainViewModel {
                     .append(report.gzip() ? "Yes" : "No")
                     .append("\n\n");
 
-            sb.append("Hex Preview\n");
-            sb.append("-------------------------\n");
-            sb.append(report.hexPreview())
-                    .append("\n\n");
-
-            sb.append("First Strings\n");
-            sb.append("-------------------------\n");
+            sb.append("First Strings")
+                    .append("\n")
+                    .append("-------------------------")
+                    .append("\n");
 
             report.extractedStrings()
                     .forEach(s -> sb.append(s).append("\n"));
@@ -60,5 +59,7 @@ public class MainViewModel {
             status.set(e.getMessage());
 
         }
+
     }
+
 }
