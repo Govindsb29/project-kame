@@ -40,3 +40,8 @@ Protobuf Data
 ## Next Milestone
 
 Parse the protobuf backup into structured Java objects.
+.\gradlew run
+
+git add .
+git commit -m "feat: display backup preview"
+git push

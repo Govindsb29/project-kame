@@ -37,6 +37,7 @@ public class BackupExplorer {
                 .toList();
 
         return new BackupReport(
+                backupFile.getFileName().toString(),
                 compressedBackup.length,
                 protobufData.length,
                 gzip,
